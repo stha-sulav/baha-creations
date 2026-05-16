@@ -1,16 +1,18 @@
-import type { LucideIcon } from "lucide-react";
-
 export interface MenuItem {
+  id: number,
   title: string;
   url: string;
   description?: string;
-  icon?: LucideIcon;
+  icon?: React.ReactNode;
   items?: MenuItem[];
 }
 
-export interface NavbarProps {
-  className?: string;
-  menu?: MenuItem[];
+export enum Media {
+  MOBILE,
+  DESKTOP,
 }
 
-export type DesktopMenuProps = {} & Pick<NavbarProps, "menu">;
+export type RenderMenuItemProps = {
+  menuItems?: MenuItem[];
+  media?: Media;
+};

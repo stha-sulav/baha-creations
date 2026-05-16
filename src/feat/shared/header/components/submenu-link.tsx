@@ -1,5 +1,6 @@
+import { MenuItem } from "@/feat/shared/header/header.types";
 import Link from "next/link";
-import type { MenuItem } from "../header.types";
+
 
 export function SubMenuLink({ item }: { item: MenuItem }) {
   return (
@@ -7,11 +8,7 @@ export function SubMenuLink({ item }: { item: MenuItem }) {
       className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
       href={item.url}
     >
-      {item.icon && (
-        <div className="text-foreground">
-          <item.icon />
-        </div>
-      )}
+      {item.icon && <div className="text-foreground">{item.icon}</div>}
       <div>
         <div className="text-sm font-semibold">{item.title}</div>
         {item.description && (

@@ -1,6 +1,0 @@
-export {DesktopMenu} from './desktop-menu'
-export {Header} from './header'
-export {MobileNav} from './mobile-menu'
-export  {Navbar} from './navbar'
-export {RenderMenuItem} from './render-menu-items'
-export {SubMenuLink} from './submenu-link'
