@@ -1,5 +1,5 @@
 import { MenuItem } from "@/feat/shared/header/header.types";
-import Link from "next/link";
+import { Link } from "next-transition-router";
 
 
 export function SubMenuLink({ item }: { item: MenuItem }) {

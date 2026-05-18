@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/feat/shared/header/components/header";
 import { ThemeProvider } from "@/feat/shared/theme/components/theme-provider";
-import { TransitionProvider } from "@/feat/shared/page-transition/components/tansition-provider";
+import { TransitionProvider } from "@/feat/shared/page-transition/components/transition-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,19 +26,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <TransitionProvider>
     <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    lang="en"
+    suppressHydrationWarning
+    className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <ThemeProvider>
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>
           <Header />
-          <TransitionProvider>
             {children}
-          </TransitionProvider>
-        </ThemeProvider>
       </body>
+        </ThemeProvider>
     </html>
+          </TransitionProvider>
   );
 }
