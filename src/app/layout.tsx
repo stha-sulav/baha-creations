@@ -26,19 +26,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <TransitionProvider>
     <html
-    lang="en"
-    suppressHydrationWarning
-    className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <ThemeProvider>
       <body className="min-h-full flex flex-col">
-          <Header />
+        <TransitionProvider>
+          <ThemeProvider>
+            <Header />
             {children}
+          </ThemeProvider>
+        </TransitionProvider>
       </body>
-        </ThemeProvider>
     </html>
-          </TransitionProvider>
   );
 }
