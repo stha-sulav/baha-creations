@@ -20,9 +20,9 @@ import { Media } from "@/feat/shared/header/header.types";
 import { cn } from "@/feat/shared/lib/utils";
 import { Logo } from "@/feat/shared/logo";
 
-export function Navbar() {
+export function Navbar({className}: {className?: string}) {
   return (
-    <section className={cn("py-4")}>
+    <section className={cn("py-4 order-1 lg:mx-auto lg:order-0", className)}>
       <MobileMenu />
       <DesktopMenu />
     </section>

@@ -4,11 +4,11 @@ import { ThemeModeToggle } from "@/feat/shared/theme/components/theme-mode-toggl
 
 export function Header() {
   return (
-    <header className="p-4 flex items-center justify-between">
+    <header className="p-4 flex items-center justify-between lg:gap-10">
       <Logo />
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 lg:w-full">
+         <Navbar />
         <ThemeModeToggle />
-        <Navbar />
       </div>
     </header>
   );
