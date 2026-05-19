@@ -11,9 +11,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-quicksand);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-quicksand);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -150,9 +150,6 @@
 }
 
 .transition-svg path {
-  /* The array defines the length of the dash and the gap. Make it huge. */
   stroke-dasharray: 500000; 
-  
-  /* The offset pushes the dash out of the viewport. Match or exceed the array. */
   stroke-dashoffset: 500000; 
 }
