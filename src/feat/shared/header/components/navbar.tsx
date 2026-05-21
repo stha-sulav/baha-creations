@@ -14,13 +14,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/feat/shared/components/ui/sheet";
+import { HeaderCta } from "@/feat/shared/header/components/header-cta";
 import { RenderMenuItem } from "@/feat/shared/header/components/render-menu-items";
 import { menuItems } from "@/feat/shared/header/header.constant";
 import { Media } from "@/feat/shared/header/header.types";
 import { cn } from "@/feat/shared/lib/utils";
 import { Logo } from "@/feat/shared/logo";
 
-export function Navbar({className}: {className?: string}) {
+export function Navbar({ className }: { className?: string }) {
   return (
     <section className={cn("py-4 order-1 lg:mx-auto lg:order-0", className)}>
       <MobileMenu />
@@ -68,6 +69,7 @@ export function MobileMenu() {
                 <RenderMenuItem menuItems={menuItems} />
               </Accordion>
             </div>
+            <HeaderCta className="w-3/4 mx-auto" />
           </SheetContent>
         </Sheet>
       </div>

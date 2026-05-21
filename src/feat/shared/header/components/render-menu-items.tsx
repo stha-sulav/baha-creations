@@ -56,10 +56,11 @@ export function RenderDesktopMenuItems({ item }: { item: MenuItem }) {
   }
   return (
     <NavigationMenuItem key={item.title}>
-      <NavigationMenuLink
-        asChild
-      >
-        <Link className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground" href={item.url}>
+      <NavigationMenuLink asChild>
+        <Link
+          className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+          href={item.url}
+        >
           {item.title}
         </Link>
       </NavigationMenuLink>
