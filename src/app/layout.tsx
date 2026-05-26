@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/feat/shared/header/components/header";
 import { TransitionProvider } from "@/feat/shared/page-transition/components/transition-provider";
 import { ThemeProvider } from "@/feat/shared/theme/components/theme-provider";
 
@@ -30,7 +29,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <TransitionProvider>
           <ThemeProvider>
-            <Header />
             {children}
           </ThemeProvider>
         </TransitionProvider>
