@@ -1,3 +1,6 @@
+"use client"
+
+import { LoginFormSchema } from "@/feat/auth/auth.schema";
 import { Button } from "@/feat/shared/components/ui/button";
 import {
   Card,
@@ -9,16 +12,41 @@ import {
 import {
   Field,
   FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/feat/shared/components/ui/field";
 import { Input } from "@/feat/shared/components/ui/input";
 import { cn } from "@/feat/shared/lib/utils";
+import { authClient } from "@/lib/auth-client";
+import { useForm } from "@tanstack/react-form"
+import Link from "next/link";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const form = useForm({
+    defaultValues: {
+      email: '',
+      password: ''
+    },
+    validators: {
+      onSubmit: LoginFormSchema
+    },
+    onSubmit: async ({value}) => {
+      console.log(value)
+    }
+  })
+
+  
+const signInWithGoogle = async () => {
+    await authClient.signIn.social({
+        provider: "google",
+        callbackURL: '/'
+    })
+}
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -29,37 +57,64 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            form.handleSubmit()
+          }}>
             <FieldGroup>
-              <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+              <form.Field 
+              name="email"
+              children={(field) => {
+                const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+                return(
+                  <Field data-invalid={isInvalid}>
+                <FieldLabel htmlFor={field.name}>Email</FieldLabel>
                 <Input
-                  id="email"
-                  type="email"
+                  id={field.name}
+                  type={field.name}
                   placeholder="m@example.com"
-                  required
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  aria-invalid= {isInvalid}
                 />
+                 {isInvalid && <FieldError errors={field.state.meta.errors} />}
               </Field>
-              <Field>
+                )
+              }}
+              />
+              <form.Field 
+              name = 'password'
+              children={(field) => {
+                const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+                return(
+                <Field data-invalid={isInvalid}>
                 <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
+                  <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+                  <Link
                     href="/"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
-                  </a>
+                  </Link>
                 </div>
-                <Input id="password" type="password" required />
+                <Input 
+                id={field.name} 
+                type={field.name} 
+                value={field.state.value} 
+                onBlur={field.handleBlur} 
+                onChange={(e) => field.handleChange(e.target.value)}
+                aria-invalid={isInvalid}
+               />
               </Field>
+                )
+              }}/>
               <Field>
                 <Button type="submit">Login</Button>
-                <Button variant="outline" type="button">
+                <Button variant="outline" type="button" onClick={signInWithGoogle}>
                   Login with Google
                 </Button>
-                <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="/">Sign up</a>
-                </FieldDescription>
               </Field>
             </FieldGroup>
           </form>

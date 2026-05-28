@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { account } from "@/drizzle/schemas/account.schema";
-import { session } from "@/drizzle/schemas/session.schema";
+import { account } from "@/drizzle/schemas/auth/account.schema";
+import { session } from "@/drizzle/schemas/auth/session.schema";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
