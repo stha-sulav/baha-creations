@@ -1,20 +1,28 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
+import { eq } from "drizzle-orm";
 import { db } from "@/drizzle/drizzle";
-import { serverEnv } from "@/env";
 import * as schema from "@/drizzle/schemas";
+import { user as users } from "@/drizzle/schemas/auth";
+import { serverEnv } from "@/env";
 
 export const auth = betterAuth({
-  baseURL: serverEnv.BETTER_AUTH_URL, 
-    socialProviders: {
-        google: { 
-            clientId: serverEnv.GOOGLE_CLIENT_ID, 
-            clientSecret: serverEnv.GOOGLE_CLIENT_SECRET, 
-        }, 
+  baseURL: serverEnv.BETTER_AUTH_URL,
+  socialProviders: {
+    google: {
+      clientId: serverEnv.GOOGLE_CLIENT_ID,
+      clientSecret: serverEnv.GOOGLE_CLIENT_SECRET,
     },
-  emailAndPassword: {
-    enabled: true,
+  },
+  callbacks: {
+    async signIn({ user }: { user: { email: string } }) {
+      const allowedUser = await db.query.user.findFirst({
+        where: eq(users.email, user.email),
+      });
+
+      return !!allowedUser;
+    },
   },
   session: {
     cookieCache: {
@@ -25,6 +33,6 @@ export const auth = betterAuth({
   plugins: [nextCookies()],
   database: drizzleAdapter(db, {
     provider: "pg",
-    schema
+    schema,
   }),
 });

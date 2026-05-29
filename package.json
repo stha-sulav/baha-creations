@@ -10,12 +10,12 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@t3-oss/env-core": "^0.13.11",
     "@tanstack/react-form-nextjs": "^1.32.0",
     "@tiptap/pm": "^3.23.6",
     "@tiptap/react": "^3.23.6",
     "@tiptap/starter-kit": "^3.23.6",
-    "@vercel/postgres": "^0.10.0",
     "better-auth": "^1.6.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
