@@ -13,7 +13,8 @@
       "!.next",
       "!dist",
       "!build",
-      "!src/feat/shared/components/ui/*"
+      "!src/feat/shared/components/ui/*",
+      "!**/*.css"
     ]
   },
   "formatter": {

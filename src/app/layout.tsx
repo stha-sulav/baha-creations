@@ -28,9 +28,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <TransitionProvider>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </TransitionProvider>
       </body>
     </html>

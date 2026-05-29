@@ -7,8 +7,8 @@ export default function PageLayout({
 }>) {
   return (
     <>
-    <Header />
-    <main>{children}</main>
-    </> 
-  )
+      <Header />
+      <main>{children}</main>
+    </>
+  );
 }

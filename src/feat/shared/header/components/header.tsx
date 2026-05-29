@@ -11,7 +11,7 @@ export function Header() {
         <Navbar />
         <div className="flex items-center gap-2">
           <ThemeModeToggle />
-          <HeaderCta className="hidden md:block"/>
+          <HeaderCta className="hidden md:block" />
         </div>
       </div>
     </header>
