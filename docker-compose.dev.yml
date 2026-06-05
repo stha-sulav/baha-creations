@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    env_file:
+      - .env.local
     volumes:
       - .:/app
     develop:
@@ -16,25 +18,18 @@ services:
           path: package.json
     ports:
       - "3000:3000"
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-      BETTER_AUTH_URL: ${BETTER_AUTH_URL}
-      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
-      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
-      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
 
     depends_on:
       - db
 
   db:
     image: postgres:16-alpine
+    env_file:
+      - .env.local
     restart: always
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
       PGDATA: /var/lib/postgresql/data/pgdata 
     volumes:
       - pgdata:/var/lib/postgresql/data/pgdata

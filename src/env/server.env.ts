@@ -8,6 +8,7 @@ export const serverEnv = createEnv({
     BETTER_AUTH_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
+    RESEND_API_KEY: z.string(),
   },
 
   runtimeEnv: {
@@ -16,6 +17,7 @@ export const serverEnv = createEnv({
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
   },
 
   emptyStringAsUndefined: true,
